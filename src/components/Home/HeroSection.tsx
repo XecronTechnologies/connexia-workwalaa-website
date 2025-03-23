@@ -1,25 +1,44 @@
-import React, { useEffect } from "react";
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2257930341.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1425211479.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3412461008.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:440318260.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1060109025.
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRotateAngle } from "../../store/homeSlice";
 import { RootState } from "../../store/store";
-import BGImage from "../../assets/Home/HeroSectionBG.jpg";
 import RangoliSVG from "../../../public/kindpng_1074922.png";
-import { motion } from "framer-motion";
-import { Stack, Button, Typography, Box } from "@mui/material";
+import { motion, useSpring, useTransform } from "framer-motion";
+import Particles from "react-tsparticles";
+import { keyframes } from "@emotion/react";
+import { Typography } from "@mui/material";
+import { loadFull } from "tsparticles";
 
 const HeroSection: React.FC = () => {
-  const futuristicColors = {
-    primary: "#64b5f6", // More refined blue
-    secondary: "#1e88e5", // Deeper blue
-    accent: "#e91e63", // More subdued pink
-    backgroundStart: "#0a192f", // Darker, more professional background
-    backgroundEnd: "#020c1b",
-    text: "#e8e8e8", // Light gray for text
-    textShadow: "rgba(0, 0, 0, 0.6)",
-    buttonGradientStart: "#e91e63",
-    buttonGradientEnd: "#64b5f6",
-    buttonShadow: "rgba(0, 0, 0, 0.3)",
+  const darkThemeColors = {
+    backgroundStart: "#121212",
+    backgroundEnd: "#1e1e1e",
+    text: "#e0e0e0",
+    accent: "#ff5722", // Changed accent color to a warmer tone
+    button: "#ffeb3b", // Yellow
+    buttonHover: "#ffd600", // Darker yellow
+    buttonText: "#fff",
+    glow: "rgba(100, 181, 246, 0.5)",
   };
+
+  const gradientAnimation = keyframes`
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  `;
+
+  const multiColorAnimation = keyframes`
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  `;
+
+  const gradientBackground = {};
 
   const dispatch = useDispatch();
   const title = useSelector((state: RootState) => state.home.hero.title);
@@ -27,6 +46,11 @@ const HeroSection: React.FC = () => {
   const rotateAngle = useSelector(
     (state: RootState) => state.home.hero.rotateAngle
   );
+
+  const rangoliRef = useRef(null);
+  const particlesInit = async (main: any) => {
+    await loadFull(main);
+  };
 
   useEffect(() => {
     let animationFrameId: number;
@@ -44,114 +68,154 @@ const HeroSection: React.FC = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, [dispatch]);
 
+  const spring = useSpring(rotateAngle, { stiffness: 20, damping: 10 });
+  const scale = useTransform(spring, [0, 360], [1, 1.02]);
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-        background: `linear-gradient(to bottom, ${futuristicColors.backgroundStart}, ${futuristicColors.backgroundEnd})`,
+    <div
+      className="flex justify-center items-center h-screen text-center relative overflow-hidden"
+      style={{
+        background: `linear-gradient(90deg, ${darkThemeColors.backgroundStart}, ${darkThemeColors.backgroundEnd})`,
+        backgroundSize: "200% 200%",
+        animation: `${gradientAnimation} 15s ease infinite`,
       }}
+      // sx={{
+      //   "&::before, &::after": {},
+
+      // }}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          width: "150%",
-          height: "150%",
-          top: "-25%",
-          left: "-25%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          opacity: 0.3, // Reduced opacity for subtlety
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          background: { color: { value: "transparent" } },
+          fpsLimit: 60,
+          particles: {
+            number: { value: 80, density: { enable: true, area: 800 } },
+            color: {
+              value: [
+                "#FF5722", // Orange
+                "#FFC107", // Amber
+                "#FFEB3B", // Yellow
+                "#4CAF50", // Green
+                "#03A9F4", // Light Blue
+              ], // Multicolored particles
+            },
+            shape: { type: "circle" },
+            opacity: { value: { min: 0.3, max: 0.7 } },
+            size: { value: { min: 1, max: 3 } },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              random: true,
+              outModes: { default: "out" },
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+      <div
+        className="absolute w-[150%] h-[150%] top-[-25%] left-[-25%] flex items-center opacity-10"
+        style={{
           backgroundSize: "contain",
         }}
+        // sx={{
+        //   display: "flex",
+        //   alignItems: "center",
+        //
+        //
+        // }}
       >
-        <img
+        <motion.img
+          ref={rangoliRef}
           src={RangoliSVG}
           alt="Rangoli"
+          className="absolute left-0"
           style={{
-            width: "25%",
+            width: "30%",
             height: "auto",
-            transform: `rotate(${rotateAngle}deg)`,
-            transition: "transform 0s linear",
+            rotate: rotateAngle,
+            scale: scale,
+            transition: "transform 0.1s linear",
             zIndex: "1",
           }}
-          className="absolute"
         />
-      </Box>
-
-      <Box
-        sx={{
-          zIndex: 2,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
+      </div>
+      <div
+        className="z-2 flex flex-col items-center p-8 max-w-[800px]"
+        // sx={{
+        //   zIndex: 2,
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        //   padding: "2rem",
+        //   maxWidth: "800px",
+        // }}
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
-          exit={{ opacity: 0, y: -50, transition: { duration: 0.8 } }}
-          whileHover={{
-            scale: 1.05,
-            transition: { duration: 0.3 },
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" },
           }}
+          exit={{
+            opacity: 0,
+            y: -50,
+            transition: { duration: 0.8, ease: "easeIn" },
+          }}
+          whileHover={{ scale: 1.03 }}
         >
           <Typography
             variant="h1"
+            component="h1"
             sx={{
-              fontSize: { xs: "3rem", md: "6rem" }, // Responsive font size
-              color: futuristicColors.text,
-              fontFamily: "sans-serif",
-              textShadow: `3px 3px 6px ${futuristicColors.textShadow}`,
-              lineHeight: "1",
-              letterSpacing: "4px",
-              cursor: "pointer",
+              fontSize: { xs: "2.5rem", md: "4rem" },
+              fontFamily: "Montserrat, sans-serif",
+              fontWeight: 700,
+              color: darkThemeColors.text,
             }}
           >
             {title}
           </Typography>
         </motion.div>
         <Typography
-          variant="h5"
-          sx={{
-            fontSize: { xs: "1rem", md: "1.5rem" },
-            color: futuristicColors.text,
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.4)",
-            marginTop: "10px",
-            fontFamily: "sans-serif",
-            letterSpacing: "1px",
+          className="font-open-sans font-light leading-tight mb-10"
+          style={{
+            fontSize: "1.2rem", // Adjusted font sizes
+            // "@media (min-width: 768px)":{fontSize:'1.6rem'},
+            color: "#b0bec5",
+            lineHeight: "1.5", // Tighter line height
+            fontFamily: "Open Sans, sans-serif",
           }}
         >
           {subtitle}
         </Typography>
-        <Button
-          variant="contained"
-          sx={{
-            marginTop: "2rem",
-            padding: "1rem 2rem",
-            background: `linear-gradient(to right, ${futuristicColors.buttonGradientStart}, ${futuristicColors.buttonGradientEnd})`,
-            color: "white",
-            fontWeight: "bold",
-            borderRadius: "2rem",
-            boxShadow: `0 4px 8px ${futuristicColors.buttonShadow}`,
-            transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
-            "&:hover": {
-              transform: "scale(1.05)",
-              boxShadow: `0 6px 12px ${futuristicColors.buttonShadow}`,
-              background: `linear-gradient(to left, ${futuristicColors.buttonGradientStart}, ${futuristicColors.buttonGradientEnd})`
-            },
+        <br></br>
+        <motion.button
+          className="font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          style={{
+            padding: "15px ",
+            color: "#000", // Black text for better contrast on yellow
+            background: `linear-gradient(135deg, ${darkThemeColors.button}, ${darkThemeColors.accent})`,
+            border: `2px solid ${darkThemeColors.accent}`,
+            boxShadow: `0 4px 12px ${darkThemeColors.glow}`,
+            cursor: "pointer",
+            fontSize: "1rem",
+            transition:
+              "background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease",
+          }}
+          whileHover={{
+            scale: 1.1,
+            background: `linear-gradient(135deg, ${darkThemeColors.buttonHover}, ${darkThemeColors.button})`,
+            boxShadow: `0 6px 18px ${darkThemeColors.glow}`,
           }}
         >
           Get Started
-        </Button>
-      </Box>
-    </Box>
+        </motion.button>
+      </div>
+    </div>
   );
 };
 

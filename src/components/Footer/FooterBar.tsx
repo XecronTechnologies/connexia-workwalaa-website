@@ -18,12 +18,15 @@ const FooterBar: React.FC = () => {
 
   return (
     <footer className="w-full bg-yellow-400 text-gray-900 p-6 text-center">
-       <div className="container mx-auto">
-      <p>&copy;{copyrightYear} {companyName}. All rights reserved. Version: {appVersion}</p>
+      <div className="container mx-auto">
+        <p>
+          &copy;{copyrightYear} {companyName}. All rights reserved. Version:{" "}
+          {appVersion}
+        </p>
         {/* {showDisclaimer && (
           <p style={{ fontSize: "0.8em", marginTop: "10px" }}>Disclaimer: Sample Footer.</p>
         )} */}
-</div>
+      </div>
     </footer>
   );
 };

@@ -9,7 +9,7 @@ const initialState: NavigationState = {
     activePage: 'Home',
     navItems: [
         { label: 'Home', page: 'Home' },
-        // { label: 'About', page: 'About' },
+        { label: 'Contact', page: 'Contact' },
         // { label: 'Services', page: 'Services' },
         // { label: 'Plan', page: 'Plan',url:'https://xmind.ai/SyMHBd6l?sheet-id=ee802ac9-f2a0-4933-8462-c37d068c575a',external:true }, //changed by me
         

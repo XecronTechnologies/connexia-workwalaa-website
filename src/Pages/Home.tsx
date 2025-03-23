@@ -1,12 +1,12 @@
 import React from 'react';
-import HeroSection from './HeroSection';
+import HeroSection from '../components/Home/HeroSection';
 
 
 const Home:React.FC = ()=>{
     return (
         <div>
             <HeroSection />
-            {/* <HeroSection /> */}
+            <HeroSection />
          
             
         </div>
