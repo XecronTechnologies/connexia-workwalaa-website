@@ -32,7 +32,7 @@ const NavigationBar: React.FC = () => {
             const offset = window.scrollY;
             if (offset > 50) {
                 setIsScrolled(true);
-                console.log("Changes happen");
+                // console.log("Changes happen");
             } else {
                 setIsScrolled(false);
             }
@@ -51,16 +51,16 @@ const NavigationBar: React.FC = () => {
             <div className="container mx-auto px-6 py-3 flex justify-between items-center">
                 <div className="flex items-center">
                     {isScrolled ? (
-                <img src={WorkwalaaLogoDark} width='80px' />
+                <img src={WorkwalaaLogoDark} width='50px' />
                     ) : (
-                <img src={WorkwalaaLogo} width='80px' />
+                <img src={WorkwalaaLogo} width='50px' />
                     )}
                     {/* <span className={`font-bold text-2xl text-white transition-colors duration-300`}>WORKWALAA</span> */}
                 </div>
                 <ul className="flex space-x-8">
                     {navItems.map((item) => (
                         <li key={item.label} className={`relative group`}>
-                            <button onClick={() => handlePageChange(item.page, item.url, item.external)} className={`text-gray-900 hover:text-gray-900 transition-colors duration-200 focus:outline-none transition-colors duration-100 ${activePage === item.page ? "text-gray-900" : ""}`}>
+                            <button onClick={() => handlePageChange(item.page, item.url, item.external)} className={` hover: transition-colors duration-200 focus:outline-none transition-colors duration-100 ${activePage === item.page && isScrolled ? "text-gray-900 font-bold" : activePage === item.page ? "text-yellow-400 font-bold" : isScrolled ? "text-gray-900" : "text-white"} `}>
                                 {item.label}
                                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300
                                        group-hover:w-full
