@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface HeroSectionState {
+  title: string;
+  subtitle:string;
   rotateAngle: number;
 }
 interface HomeState {
@@ -9,7 +11,10 @@ interface HomeState {
 
 const initialState: HomeState = {
   hero: {
+    title:"Workwalaa",
+    subtitle:"Make your Work, Make your Income.",
     rotateAngle: 0,
+
   },
 };
 
