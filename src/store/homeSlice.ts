@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface HeroSectionState {
+  
   title: string;
   subtitle: string;
   rotateAngle: number;
 }
 interface HomeState {
+  // activePage: string;
   hero: HeroSectionState;
 }
 
 const initialState: HomeState = {
+  // activePage:'/',
   hero: {
     title: "Welcome to the Workwalaa!",
     subtitle:

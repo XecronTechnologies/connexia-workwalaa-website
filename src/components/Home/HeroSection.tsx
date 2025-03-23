@@ -39,7 +39,6 @@ const HeroSection: React.FC = () => {
   `;
 
   const gradientBackground = {};
-
   const dispatch = useDispatch();
   const title = useSelector((state: RootState) => state.home.hero.title);
   const subtitle = useSelector((state: RootState) => state.home.hero.subtitle);

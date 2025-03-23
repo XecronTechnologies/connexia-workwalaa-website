@@ -1,16 +1,21 @@
 import "./App.css";
-
-import NavigationBar from "./components/Navigation/NavigationBar";
-import FooterBar from "./components/Footer/FooterBar";
+import React from 'react';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import NavigationBar from './components/Navigation/NavigationBar';
+import FooterBar from './components/Footer/FooterBar';
 import Home from "./Pages/Home";
+import Contact from "./Pages/Contact";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <NavigationBar />
-      <Home />
-      <FooterBar />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+<FooterBar />
+    </BrowserRouter>
   );
 }
 
