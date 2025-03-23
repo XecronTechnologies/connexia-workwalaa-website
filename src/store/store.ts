@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import navigationReducer from './navigationSlice';
+import footerReducer from './footerSlice';
 
 
 const store = configureStore({
     reducer: {
         navigation: navigationReducer,
+        footer: footerReducer,
     },
 });
 
