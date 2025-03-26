@@ -12,9 +12,9 @@ const FooterBar: React.FC = () => {
   const companyName = useSelector(
     (state: RootState) => state.footer.companyName
   );
-  const showDisclaimer = useSelector(
-    (state: RootState) => state.footer.showDisclaimer
-  );
+  // const showDisclaimer = useSelector(
+  //   (state: RootState) => state.footer.showDisclaimer
+  // );
 
   return (
     <footer className="w-full bg-yellow-400 text-gray-900 p-6 text-center">

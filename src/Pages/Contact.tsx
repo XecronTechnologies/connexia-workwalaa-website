@@ -7,10 +7,10 @@
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:2020497839.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:623029375.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:2313162153.
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import HeroSection from '../components/Home/HeroSection';
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store";
 import {setActivePage} from '../store/navigationSlice';
 import ContactForm from '../components/Contact/ContactForm'
 

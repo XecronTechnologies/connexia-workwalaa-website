@@ -33,13 +33,13 @@ const HeroSection: React.FC = () => {
     100% { background-position: 0% 50%; }
   `;
 
-  const multiColorAnimation = keyframes`
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  `;
+  // const multiColorAnimation = keyframes`
+  //   0% { background-position: 0% 50%; }
+  //   50% { background-position: 100% 50%; }
+  //   100% { background-position: 0% 50%; }
+  // `;
 
-  const gradientBackground = {};
+  // const gradientBackground = {};
   const dispatch = useDispatch();
   const title = useSelector((state: RootState) => state.home.hero.title);
   const subtitle = useSelector((state: RootState) => state.home.hero.subtitle);
