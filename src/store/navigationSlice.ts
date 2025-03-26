@@ -9,7 +9,7 @@ const initialState: NavigationState = {
   activePage: "Home",
   navItems: [
     { label: "Home", page: "Home", url: "/", external: false }, 
-    { label: "Contact", page: "Contact", url: "/Contact", external: false }, 
+    { label: "Contact", page: "Contact", url: "https://workwalaa.netlify.app/contact", external: true }, 
     // { label: 'Services', page: 'Services' },
     // {
     //   label: "Plan",
