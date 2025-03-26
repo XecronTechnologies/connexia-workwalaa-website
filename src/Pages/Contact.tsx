@@ -21,7 +21,8 @@ const ContactPage: React.FC = () => {
     dispatch(setActivePage("Contact")); // Set the active page to "Contact"
   }, [dispatch]);
   return (
-   <ContactForm submitId="BmdrCUdDP" />
+  //  <ContactForm submitId="BmdrCUdDP" />
+   <ContactForm submitId="jMPPwSxhk" />
   );
 };
 
