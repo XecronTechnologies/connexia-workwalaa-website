@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { setActivePage } from "../../store/navigationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-
+import { useNavigate } from 'react-router-dom';
 import WorkwalaaLogoDark from "/WorkwalaaLogoDark.png";
 import WorkwalaaLogo from "/WorkwalaaLogo.png";
 
@@ -15,14 +15,14 @@ const NavigationBar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const navigate = useNavigate();
+
   const handlePageChange = (page: string, url?: string, external?: boolean) => {
     dispatch(setActivePage(page));
     if (external) {
       window.open(url, "_blank");
-    } else {
-      if (url) {
-        window.location.href = url;
-      }
+    } else if (url) {
+      navigate(url);
     }
   };
 

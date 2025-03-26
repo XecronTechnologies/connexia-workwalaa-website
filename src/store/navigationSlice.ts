@@ -8,8 +8,8 @@ interface NavigationState {
 const initialState: NavigationState = {
   activePage: "Home",
   navItems: [
-    { label: "Home", page: "Home", url: "/", external: false }, 
-    { label: "Contact", page: "Contact", url: "https://workwalaa.netlify.app/contact", external: true }, 
+    { label: "Home", page: "Home", url: "/", external: false }, // Ensure "/" is correct for the home page
+    { label: "Contact", page: "Contact", url: "/Contact", external: false }, // Corrected to "/Contact" for proper routing
     // { label: 'Services', page: 'Services' },
     // {
     //   label: "Plan",
