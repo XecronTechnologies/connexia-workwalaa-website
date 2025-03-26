@@ -7,12 +7,13 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRotateAngle } from "../../store/homeSlice";
 import { RootState } from "../../store/store";
-import RangoliSVG from "../../../public/kindpng_1074922.png";
+import RangoliSVG from "../../../public/RangoliSVG.png";
 import { motion, useSpring, useTransform } from "framer-motion";
 import Particles from "react-tsparticles";
 import { keyframes } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { loadFull } from "tsparticles";
+import GradientButton from '../../components/Buttons/GradientButton'
 
 const HeroSection: React.FC = () => {
   const darkThemeColors = {
@@ -192,8 +193,8 @@ const HeroSection: React.FC = () => {
           {subtitle}
         </Typography>
         <br></br>
-        <motion.button
-          className="font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        {/* <motion.button
+          
           style={{
             padding: "15px ",
             color: "#000", // Black text for better contrast on yellow
@@ -212,7 +213,9 @@ const HeroSection: React.FC = () => {
           }}
         >
           Get Started
-        </motion.button>
+        </motion.button> */}
+        <GradientButton text="Get Started" href="/contact"/>
+      
       </div>
     </div>
   );
