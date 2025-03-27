@@ -1,13 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/WorkWalaaFavicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Workwalaa - With the help of innovative technology and personalized solutions, we create meaningful connections" />
+    <meta name="keywords" content="Workwalaa, freelancing, remote jobs, hire professionals, work marketplace, online jobs" />
+    <meta name="author" content="Workwalaa Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (Social Media) Meta Tags -->
+    <meta property="og:title" content="Workwalaa - Your Work, Your Way" />
+    <meta property="og:description" content="Find jobs, hire skilled professionals, and grow your career with Workwalaa." />
+    <meta property="og:image" content="https://workwalaa.com/WorkwalaaLogo.png" />
+    <meta property="og:url" content="https://workwalaa.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Title -->
     <title>Workwalaa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/WorkWalaaFavicon.png" type="image/png" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+
+    <!-- Structured Data (Schema Markup) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Workwalaa",
+      "url": "https://workwalaa.com",
+      "logo": "https://workwalaa.com/WorkwalaaLogo.png",
+      "description": "Workwalaa connects businesses with top freelancers. Find jobs, hire professionals, and grow your career.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-234-567-890",
+        "contactType": "Customer Support"
+      }
+    }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Main React Script -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
