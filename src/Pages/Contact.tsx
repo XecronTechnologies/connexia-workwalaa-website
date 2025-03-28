@@ -12,7 +12,10 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import {setActivePage} from '../store/navigationSlice';
-import ContactForm from '../components/Contact/ContactForm'
+// import ContactForm from '../components/Contact/ContactForm';
+import ContactFormDiscord from '../components/Contact/ContactFormDiscord';
+
+
 
 const ContactPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,7 +25,8 @@ const ContactPage: React.FC = () => {
   }, [dispatch]);
   return (
   //  <ContactForm submitId="BmdrCUdDP" />
-   <ContactForm submitId="jMPPwSxhk" />
+  //  <ContactForm submitId="jMPPwSxhk" />
+  <ContactFormDiscord />
   );
 };
 

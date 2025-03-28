@@ -7,16 +7,20 @@ interface GradientButtonProps {
   href?: string;
   type?: "submit";
   onClick?: () => void; // Add an optional onClick prop
+  disabled?: boolean;
 }
 
-const GradientButton: React.FC<GradientButtonProps> = ({ text, href, type, onClick }) => {
+const GradientButton: React.FC<GradientButtonProps> = ({ text, href, type, onClick, disabled }) => {
   const navigate = useNavigate();
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // Prevent default <a> behavior if href is present.
-
+    if (disabled) return;
     if (href) {
+      e.preventDefault(); // Prevent default <a> behavior if href is present.
       navigate(href);
+    } else if (type === "submit") {
+
+      
     } else if (onClick) {
       onClick(); // Call the passed onClick function
     }
@@ -25,6 +29,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({ text, href, type, onCli
   if (href || type || onClick) {
     return (
       <motion.button
+        disabled={disabled}
         onClick={handleButtonClick}
         type={type}
         className={`bg-gradient-to-r py-3 px-6 rounded-md font-semibold text-white shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 inline-block`}
